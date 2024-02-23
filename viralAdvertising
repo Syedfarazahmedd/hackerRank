@@ -1,0 +1,59 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the 'viralAdvertising' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER n as parameter.
+ */
+
+function viralAdvertising(n) {
+    // Write your code here
+    let scores=[];
+    scores[1]=5;
+    let cumulative=[];
+    for(let i=2;i<=50;i++){
+        scores[i]=(Math.floor(scores[i-1]/2))*3;
+    }
+    cumulative[1]=2;
+    for(let i=2;i<=50;i++){
+        cumulative[i]=cumulative[i-1]+Math.floor(scores[i]/2);
+    }
+    //let ans=Math.floor(scores[n-1]/2)+Math.floor(scores[n]/2)
+    return cumulative[n];
+
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const n = parseInt(readLine().trim(), 10);
+
+    const result = viralAdvertising(n);
+
+    ws.write(result + '\n');
+
+    ws.end();
+}
