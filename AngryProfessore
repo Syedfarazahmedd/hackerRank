@@ -1,0 +1,14 @@
+function angryProfessor(k, a) {
+    // Write your code here
+let countYes=0 //counts the number of students
+for(let i=0;i<a.length;i++){
+    if(a[i]<=0){ //checks if arrival time is a negative value or a zero
+        countYes++;
+    }
+}
+if(countYes>=k){ /checks if total number of students on time are greater than the threshold value
+    return "NO";
+}
+else
+return "YES";
+}
