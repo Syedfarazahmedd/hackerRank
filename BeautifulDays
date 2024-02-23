@@ -1,0 +1,13 @@
+function beautifulDays(i, j, k) {
+    // Write your code here
+    let count=0;
+    for(let a=i;a<=j;a++){ //loops between input dates
+    let temp=String(a); //converts number to string value
+    temp=temp.split("").reverse().join(""); // reverse the string
+    temp=parseInt(temp); //converts string value back to a number for mathematical operations
+    if(Math.abs(a-temp)%k==0){ //checks if difference is divisible by k
+  count++;
+    }
+    }
+return count;
+}
